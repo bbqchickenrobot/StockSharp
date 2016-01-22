@@ -156,18 +156,21 @@ namespace StockSharp.Terminal.Controls
 				return;
 
 			var control = Activator.CreateInstance(controlType);
-			var anchor = new LayoutAnchorable()
-			{
-				Title = controlName,
-				CanClose = false
-			};
-			var pane = new LayoutAnchorablePane();
 
-			anchor.Content = control;
-			pane.Children.Add(anchor);
+            _layoutManager.OpenDocumentWindow(new TradesPanel());
 
-			DockingManagerGroup.Children.Add(pane);
-		}
+            //var anchor = new LayoutAnchorable()
+            //{
+            //	Title = controlName,
+            //	CanClose = false
+            //};
+            //var pane = new LayoutAnchorablePane();
+
+            //anchor.Content = control;
+            //pane.Children.Add(anchor);
+
+            //DockingManagerGroup.Children.Add(pane);
+        }
 
 		//private void WorkArea_ChildrenTreeChanged(object sender, Xceed.Wpf.AvalonDock.Layout.ChildrenTreeChangedEventArgs e)
 		//{
@@ -535,7 +538,7 @@ namespace StockSharp.Terminal.Controls
 
             //DiagramDebuggerControl.Debugger.Load(storage.GetValue<SettingsStorage>("Debugger"));
 
-			//_layoutManager.LoadLayout(storage.GetValue<string>("Layout"));
+			_layoutManager.LoadLayout(storage.GetValue<string>("Layout"));
 		}
 
 		public override void Save(SettingsStorage storage)
@@ -556,7 +559,7 @@ namespace StockSharp.Terminal.Controls
 
 			//storage.SetValue("Debugger", DiagramDebuggerControl.Debugger.Save());
 
-			//storage.SetValue("Layout", _layoutManager.SaveLayout());
+			storage.SetValue("Layout", _layoutManager.SaveLayout());
 		}
 
 		#endregion

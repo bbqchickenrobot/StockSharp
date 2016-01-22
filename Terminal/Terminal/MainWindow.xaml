@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:StockSharp.Terminal.Controls"
 		xmlns:fluent="clr-namespace:Fluent;assembly=Fluent"
 		xmlns:loc="clr-namespace:StockSharp.Localization;assembly=StockSharp.Localization"
-		DataContext="{Binding RelativeSource={RelativeSource Self}}"
 		Height="600" Width="800" Title="Trade Terminal (UI test)" Loaded="MainWindow_OnLoaded">
 
     <Grid>
@@ -27,7 +26,7 @@
             
         </fluent:Ribbon>
         <StackPanel Orientation="Horizontal">
-            <Button Click="AddDocument" Width="90" Height="25" Content="Add work area" HorizontalAlignment="Left" Margin="10, 5" />
+            <Button Command="{Binding AddWorkAreaCommand}" CommandParameter="1" Width="90" Height="25" Content="Add work area" HorizontalAlignment="Left" Margin="10, 5" />
             <ComboBox x:Name="NewControlComboBox" Width="100" Height="25" Text="123" SelectionChanged="ComboBox_SelectionChanged">
                 <ComboBoxItem Content="TradesPanel"/>
                 <ComboBoxItem Content="OrdersPanel"/>
@@ -48,13 +47,13 @@
                     </xcad:LayoutAnchorablePaneGroup>
                     <xcad:LayoutDocumentPaneGroup>
                         <xcad:LayoutDocumentPane x:Name="LayoutDocuments">
-                            <xcad:LayoutDocument Title="Work area #1">
+                            <!--<xcad:LayoutDocument Title="Work area #1">
                                 <local:WorkAreaControl />
                             </xcad:LayoutDocument>
                             <xcad:LayoutDocument Title="Work area #2">
                                 <local:WorkAreaControl />
                             </xcad:LayoutDocument>
-                            <!--<xcad:LayoutDocument Title="+" x:Name="AddDocumentElement" CanFloat="False" CanClose="False">
+                            --><!--<xcad:LayoutDocument Title="+" x:Name="AddDocumentElement" CanFloat="False" CanClose="False">
                                 <Grid Background="Gray" />
                             </xcad:LayoutDocument>-->
                         </xcad:LayoutDocumentPane>

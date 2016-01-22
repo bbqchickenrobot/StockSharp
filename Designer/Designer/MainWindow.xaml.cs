@@ -66,8 +66,8 @@ namespace StockSharp.Designer
 		public MainWindow()
 		{
 			InitializeComponent();
-
-			Title = TypeHelper.ApplicationNameWithVersion;
+            
+            Title = TypeHelper.ApplicationNameWithVersion;
 
 			InitializeDataSource();
 
