@@ -13,7 +13,7 @@ Created: 2015, 11, 11, 2:32 PM
 Copyright 2010 by StockSharp, LLC
 *******************************************************************************************/
 #endregion S# License
-namespace StockSharp.Studio.Services
+namespace StockSharp.Studio.Core.Services
 {
 	using System;
 	using System.Collections.Generic;
@@ -34,7 +34,7 @@ namespace StockSharp.Studio.Services
 
 	using CommandTuple = System.Tuple<System.Action<Core.Commands.IStudioCommand>, System.Func<Core.Commands.IStudioCommand, bool>, bool>;
 
-	class StudioCommandService : IStudioCommandService
+	public class StudioCommandService : IStudioCommandService
 	{
 		private sealed class Scope : IStudioCommandScope
 		{

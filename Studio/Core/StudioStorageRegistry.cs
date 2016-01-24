@@ -20,7 +20,6 @@ namespace StockSharp.Studio.Core
 	using System.IO;
 
 	using Ecng.Common;
-	using Ecng.Configuration;
 	using Ecng.Serialization;
 
 	using StockSharp.Algo;
@@ -90,9 +89,11 @@ namespace StockSharp.Studio.Core
 					if (_remoteDrive.Client.Address.OriginalString == MarketDataSettings.Path)
 						return _remoteDrive;
 
-					var credentials = MarketDataSettings.IsStockSharpStorage
-						? ConfigManager.GetService<IPersistableService>().GetCredentials()
-						: MarketDataSettings.Credentials;
+					//var credentials = MarketDataSettings.IsStockSharpStorage
+					//	? ConfigManager.GetService<IPersistableService>().GetCredentials()
+					//	: MarketDataSettings.Credentials;
+
+					var credentials = MarketDataSettings.Credentials;
 
 					_remoteDrive.Client = new RemoteStorageClient(new Uri(MarketDataSettings.Path))
 					{
@@ -128,10 +129,7 @@ namespace StockSharp.Studio.Core
 
 		private readonly StudioDrive _defaultDrive = new StudioDrive();
 
-		public override IMarketDataDrive DefaultDrive
-		{
-			get { return _defaultDrive; }
-		}
+		public override IMarketDataDrive DefaultDrive => _defaultDrive;
 
 		public MarketDataSettings MarketDataSettings
 		{
