@@ -31,7 +31,7 @@
                 <ComboBoxItem Content="TradesPanel"/>
                 <ComboBoxItem Content="OrdersPanel"/>
                 <ComboBoxItem Content="SecuritiesPanel"/>
-                <ComboBoxItem Content="Level2Panel"/>
+                <!--<ComboBoxItem Content="Level2Panel"/>-->
                 <ComboBoxItem Content="NewsPanel"/>
                 <ComboBoxItem Content="PortfoliosPanel"/>
                 <ComboBoxItem Content="CandleChartPanel"/>

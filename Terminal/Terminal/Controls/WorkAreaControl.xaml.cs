@@ -51,7 +51,7 @@ using Xceed.Wpf.AvalonDock.Layout;
 
 namespace StockSharp.Terminal.Controls
 {
-	public partial class WorkAreaControl
+	public partial class WorkAreaControl : IPersistable
 	{
 		//private class TradeCandleBuilderSourceEx : TradeCandleBuilderSource
 		//{
@@ -128,7 +128,7 @@ namespace StockSharp.Terminal.Controls
 				{ "TradesPanel", typeof(TradesPanel) },
 				{ "OrdersPanel", typeof(OrdersPanel) },
 				{ "SecuritiesPanel", typeof(SecuritiesPanel) },
-				{ "Level2Panel", typeof(Level2Panel) },
+				//{ "Level2Panel", typeof(Level2Panel) },
 				{ "NewsPanel", typeof(NewsPanel) },
 				{ "PortfoliosPanel", typeof(PortfoliosPanel) },
 				{ "CandleChartPanel", typeof(CandleChartPanel) },
@@ -155,9 +155,12 @@ namespace StockSharp.Terminal.Controls
 			if (!_controls.TryGetValue(controlName, out controlType))
 				return;
 
-			var control = Activator.CreateInstance(controlType);
+			var control = Activator.CreateInstance(controlType) as BaseStudioControl;
 
-            _layoutManager.OpenDocumentWindow(new TradesPanel());
+			if (control == null)
+				return;
+
+			_layoutManager.OpenToolWindow(control);
 
             //var anchor = new LayoutAnchorable()
             //{
@@ -187,21 +190,21 @@ namespace StockSharp.Terminal.Controls
 		//	Debug.WriteLine("PropertyChanging");
 		//}
 
-		public override bool CanClose()
-		{
-			//if (_connector == null || _connector.State == EmulationStates.Stopped)
-			//	return true;
+		//public override bool CanClose()
+		//{
+		//	//if (_connector == null || _connector.State == EmulationStates.Stopped)
+		//	//	return true;
 
-			//new MessageBoxBuilder()
-			//	.Owner(this)
-			//	.Caption(Title)
-			//	.Text(LocalizedStrings.Str3617Params.Put(Title))
-			//	.Icon(MessageBoxImage.Warning)
-			//	.Button(MessageBoxButton.OK)
-			//	.Show();
+		//	//new MessageBoxBuilder()
+		//	//	.Owner(this)
+		//	//	.Caption(Title)
+		//	//	.Text(LocalizedStrings.Str3617Params.Put(Title))
+		//	//	.Icon(MessageBoxImage.Warning)
+		//	//	.Button(MessageBoxButton.OK)
+		//	//	.Show();
 
-			return true;
-		}
+		//	return true;
+		//}
 
 		private void InitializeCommands()
 		{
@@ -510,7 +513,7 @@ namespace StockSharp.Terminal.Controls
 
 		private void OnDiagramDebuggerControlChanged()
 		{
-			RaiseChanged();
+			//RaiseChanged();
 		}
 
 		#region IPersistable
@@ -536,7 +539,7 @@ namespace StockSharp.Terminal.Controls
 			//	//Composition = registry.Clone(composition)
 			//};
 
-            //DiagramDebuggerControl.Debugger.Load(storage.GetValue<SettingsStorage>("Debugger"));
+			//DiagramDebuggerControl.Debugger.Load(storage.GetValue<SettingsStorage>("Debugger"));
 
 			_layoutManager.LoadLayout(storage.GetValue<string>("Layout"));
 		}

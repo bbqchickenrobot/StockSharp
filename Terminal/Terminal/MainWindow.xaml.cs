@@ -84,20 +84,20 @@ namespace StockSharp.Terminal
                 //    Content = new WorkAreaControl()
                 //};
 
-                LayoutManager.OpenDocumentWindow(new WorkAreaControl()
-                {
-                    Title = "Work area #" + ++_countWorkArea
-                });
+                LayoutManager.OpenDocumentWindow(new WorkAreaControl());
+				//new WorkAreaControl()
+				//{
+				//	//Title = "Work area #" + ++_countWorkArea
+				//}
+				//newWorkArea.Closing += NewWorkArea_Closing;
 
-                //newWorkArea.Closing += NewWorkArea_Closing;
+				//LayoutDocuments.Children.Add(newWorkArea);
 
-                //LayoutDocuments.Children.Add(newWorkArea);
+				//var offset = LayoutDocuments.Children.Count - 1;
+				//offset = (offset < 0) ? 0 : offset;
 
-                //var offset = LayoutDocuments.Children.Count - 1;
-                //offset = (offset < 0) ? 0 : offset;
-
-                //LayoutDocuments.SelectedContentIndex = offset;
-            }, y => true);
+				//LayoutDocuments.SelectedContentIndex = offset;
+			}, y => true);
         }
 
 		private void DockingManager_DocumentClosed(object sender, DocumentClosedEventArgs e)
